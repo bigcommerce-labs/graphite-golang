@@ -21,14 +21,15 @@ func TestNewGraphite(t *testing.T) {
 }
 
 // Uncomment the following method to test sending an actual metric to graphite
-//
-//func TestSendMetric(t *testing.T) {
-//	gh, err := NewGraphite(graphiteHost, graphitePort)
-//	if err != nil {
-//		t.Error(err)
-//	}
-//	err = gh.SimpleSend("stats.test.metric11", "1")
-//	if err != nil {
-//		t.Error(err)
-//	}
-//}
+func TestSendMetric(t *testing.T) {
+	gh, err := NewGraphite(graphiteHost, graphitePort)
+	defer gh.Close()
+
+	if err != nil {
+		t.Error(err)
+	}
+	err = gh.SimpleSend("e6c05da9-cf17-4dac-9696-1a3f8e0f1967.stats.test.metric11", "1")
+	if err != nil {
+		t.Error(err)
+	}
+}

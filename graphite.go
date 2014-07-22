@@ -31,6 +31,11 @@ func (graphite *Graphite) IsNop() bool {
 	}
 }
 
+// Close the connection.
+func (graphite *Graphite) Close() error {
+	return graphite.conn.Close()
+}
+
 // Given a Graphite struct, Connect populates the Graphite.conn field with an
 // appropriate TCP connection
 func (graphite *Graphite) Connect() error {
